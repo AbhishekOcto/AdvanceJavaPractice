@@ -3,6 +3,8 @@ package com.streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamMain {
 
@@ -27,14 +29,17 @@ public class StreamMain {
 //        System.out.println(list2);
 
         //without using stream extract even numbers
-        List<Integer> evenList = new ArrayList<>();
-        for (Integer i : list1){
-            if (i % 2 == 0){
-                evenList.add(i);
-            }
-        }
-        System.out.println("list elements: " +list1);
-        System.out.println("even elements: " +evenList);
+//
+
+        //Using stream
+        Stream<Integer> stream = list1.stream();
+        List<Integer> newList = stream.filter( i -> i%2 == 0 ).collect(Collectors.toList());
+        System.out.println(newList);
+
+        //filter numbers greater than 50
+
+        List<Integer> newList2 =list1.stream().filter(i -> i > 50).collect(Collectors.toList());
+        System.out.println(newList2);
 
     }
 }
